@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101827">
+<meta name="description" content="VATO – Entdecke Fitnessprodukte, Technik und interessante Angebote.">
 <title>VATO – Angebote entdecken</title>
 
 <style>
@@ -15,6 +16,7 @@
   --muted:#b8c4d8;
 }
 * { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
 body {
   margin:0;
   font-family:Arial,sans-serif;
@@ -44,6 +46,10 @@ button {
 button:hover,.active {
   border-color:var(--green);
   color:var(--green);
+}
+button:focus-visible,a:focus-visible,input:focus-visible {
+  outline:2px solid var(--green);
+  outline-offset:3px;
 }
 main { max-width:1050px;margin:auto;padding:22px 16px; }
 .hero {
@@ -90,7 +96,12 @@ input {
 .product h3 { margin:0; }
 .product p { margin:0; }
 .product button { margin-top:auto; }
-.product a { display:block; margin-top:auto; text-decoration:none; }
+.product .favorite { margin-top:0; }
+.product a {
+  display:block;
+  margin-top:auto;
+  text-decoration:none;
+}
 .primary {
   background:var(--green);
   color:#101827;
@@ -120,9 +131,13 @@ footer {
 <body>
 <header>
   <div class="logo">VATO</div>
-  <nav>
-    <button onclick="showMode('all')" id="allBtn" class="active">Startseite</button>
-    <button onclick="showMode('favorites')" id="favoritesBtn">♡ Favoriten</button>
+  <nav aria-label="Hauptnavigation">
+    <button type="button" onclick="showMode('all')" id="allBtn" class="active">
+      Startseite
+    </button>
+    <button type="button" onclick="showMode('favorites')" id="favoritesBtn">
+      ♡ Favoriten
+    </button>
   </nav>
 </header>
 
@@ -132,7 +147,8 @@ footer {
     <h1>Willkommen bei <span class="green">VATO</span></h1>
     <p>Entdecke interessante Produkte und Angebote.
        Finde deine nächsten Favoriten.</p>
-    <button class="primary" onclick="document.getElementById('angebote').scrollIntoView({behavior:'smooth'})">
+    <button type="button" class="primary"
+      onclick="document.getElementById('angebote').scrollIntoView({behavior:'smooth'})">
       Angebote entdecken ↓
     </button>
   </section>
@@ -145,27 +161,28 @@ footer {
     oninput="render()"
     aria-label="Angebote suchen">
 
-  <div class="categories">
-    <button class="active" onclick="setCategory('Alle',this)">Alle</button>
-    <button onclick="setCategory('Technik',this)">📱 Technik</button>
-    <button onclick="setCategory('Fitness',this)">💪 Fitness</button>
-    <button onclick="setCategory('Lifestyle',this)">✨ Lifestyle</button>
-    <button onclick="setCategory('Reisen',this)">✈️ Reisen</button>
+  <div class="categories" aria-label="Produktkategorien">
+    <button type="button" class="active" onclick="setCategory('Alle',this)">Alle</button>
+    <button type="button" onclick="setCategory('Technik',this)">📱 Technik</button>
+    <button type="button" onclick="setCategory('Fitness',this)">💪 Fitness</button>
+    <button type="button" onclick="setCategory('Lifestyle',this)">✨ Lifestyle</button>
+    <button type="button" onclick="setCategory('Reisen',this)">✈️ Reisen</button>
   </div>
 
   <div class="products" id="products"></div>
   <p id="empty" class="muted" hidden>Keine passenden Angebote gefunden.</p>
 
   <section class="notice">
-    <strong>Werbehinweis:</strong> VATO kann Affiliate-Links enthalten.
-    Wenn du über einen solchen Link einkaufst, können wir unter bestimmten
-    Voraussetzungen eine Provision erhalten. Für dich entstehen dadurch
-    grundsätzlich keine zusätzlichen Kosten.
+    <strong>Werbehinweis:</strong>
+    VATO kann Affiliate-Links enthalten. Wenn du über einen solchen Link
+    einkaufst, können wir unter bestimmten Voraussetzungen eine Provision
+    erhalten. Für dich entstehen dadurch grundsätzlich keine zusätzlichen Kosten.
   </section>
 
   <section class="notice">
-    <strong>Hinweis:</strong> Vor dem kommerziellen Betrieb müssen ein
-    vollständiges Impressum und eine Datenschutzerklärung ergänzt werden.
+    <strong>Wichtiger Hinweis:</strong>
+    Vor dem kommerziellen Betrieb müssen die erforderlichen rechtlichen Angaben,
+    insbesondere ein Impressum und eine Datenschutzerklärung, ergänzt werden.
     Verwende nur Partnerlinks, die deinem eigenen Partnerkonto zugeordnet sind.
   </section>
 </main>
@@ -203,6 +220,14 @@ const products = [
     link:"https://link.amazon/B0dcdo7Tu"
   },
   {
+    id:7,
+    name:"Kurzhanteln",
+    category:"Fitness",
+    emoji:"🏋️",
+    description:"Kurzhanteln für dein Krafttraining bei Amazon entdecken.",
+    link:"https://link.amazon/B0aFWZYEt"
+  },
+  {
     id:4,
     name:"Kopfhörer",
     category:"Technik",
@@ -232,10 +257,10 @@ let category = "Alle";
 let mode = "all";
 let favorites = [];
 
-function setCategory(value,button) {
+function setCategory(value, button) {
   category = value;
   document.querySelectorAll(".categories button")
-    .forEach(b=>b.classList.remove("active"));
+    .forEach(b => b.classList.remove("active"));
   button.classList.add("active");
   render();
 }
@@ -244,10 +269,10 @@ function showMode(value) {
   mode = value;
 
   document.getElementById("allBtn")
-    .classList.toggle("active",value==="all");
+    .classList.toggle("active", value === "all");
 
   document.getElementById("favoritesBtn")
-    .classList.toggle("active",value==="favorites");
+    .classList.toggle("active", value === "favorites");
 
   render();
   document.getElementById("angebote")
@@ -256,35 +281,42 @@ function showMode(value) {
 
 function toggleFavorite(id) {
   favorites = favorites.includes(id)
-    ? favorites.filter(x=>x!==id)
-    : [...favorites,id];
+    ? favorites.filter(x => x !== id)
+    : [...favorites, id];
   render();
 }
 
 function render() {
-  const term = document.getElementById("search").value.toLowerCase().trim();
+  const term = document.getElementById("search")
+    .value.toLowerCase().trim();
 
   const shown = products.filter(p =>
-    (category==="Alle" || p.category===category) &&
-    (mode!=="favorites" || favorites.includes(p.id)) &&
-    (p.name+" "+p.category+" "+p.description).toLowerCase().includes(term)
+    (category === "Alle" || p.category === category) &&
+    (mode !== "favorites" || favorites.includes(p.id)) &&
+    (p.name + " " + p.category + " " + p.description)
+      .toLowerCase().includes(term)
   );
 
-  document.getElementById("products").innerHTML = shown.map(p=>`
+  document.getElementById("products").innerHTML = shown.map(p => `
     <article class="product">
-      <div class="emoji">${p.emoji}</div>
+      <div class="emoji" aria-hidden="true">${p.emoji}</div>
       <p class="green">${p.category}</p>
       <h3>${p.name}</h3>
       <p class="muted">${p.description}</p>
 
-      <button type="button" onclick="toggleFavorite(${p.id})">
-        ${favorites.includes(p.id)?"♥ Gespeichert":"♡ Merken"}
+      <button type="button" class="favorite"
+        onclick="toggleFavorite(${p.id})">
+        ${favorites.includes(p.id) ? "♥ Gespeichert" : "♡ Merken"}
       </button>
 
       ${
         p.link
-        ? `<a href="${p.link}" target="_blank" rel="sponsored nofollow noopener">
-             <button type="button" class="primary" style="width:100%">Angebot ansehen →</button>
+        ? `<a href="${p.link}" target="_blank"
+             rel="sponsored nofollow noopener"
+             aria-label="${p.name} bei Amazon ansehen">
+             <button type="button" class="primary" style="width:100%">
+               Angebot ansehen →
+             </button>
            </a>`
         : `<button type="button" class="primary"
              onclick="alert('Für dieses Produkt wird noch ein Partnerlink hinzugefügt.')">
@@ -294,7 +326,7 @@ function render() {
     </article>
   `).join("");
 
-  document.getElementById("empty").hidden = shown.length!==0;
+  document.getElementById("empty").hidden = shown.length !== 0;
 }
 
 render();
