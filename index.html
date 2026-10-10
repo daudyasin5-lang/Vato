@@ -40,7 +40,10 @@ button {
   padding:11px 14px;
   border-radius:10px;
 }
-button:hover,.active { border-color:var(--green);color:var(--green); }
+button:hover,.active {
+  border-color:var(--green);
+  color:var(--green);
+}
 main { max-width:1050px;margin:auto;padding:22px 16px; }
 .hero {
   padding:32px 22px;
@@ -55,12 +58,18 @@ p { line-height:1.6; }
 .muted { color:var(--muted); }
 .search { width:100%;margin:18px 0; }
 input {
-  width:100%;padding:14px;border-radius:10px;
-  border:1px solid #34455d;background:var(--card);
+  width:100%;
+  padding:14px;
+  border-radius:10px;
+  border:1px solid #34455d;
+  background:var(--card);
   color:white;
 }
 .categories {
-  display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin:16px 0;
 }
 .products {
   display:grid;
@@ -68,32 +77,45 @@ input {
   gap:16px;
 }
 .product {
-  background:var(--card);border:1px solid #30415a;
-  border-radius:16px;padding:18px;
-  display:flex;flex-direction:column;gap:10px;
+  background:var(--card);
+  border:1px solid #30415a;
+  border-radius:16px;
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 .product .emoji { font-size:42px; }
 .product h3 { margin:0; }
 .product p { margin:0; }
 .product button { margin-top:auto; }
 .primary {
-  background:var(--green);color:#101827;
-  border-color:var(--green);font-weight:bold;
+  background:var(--green);
+  color:#101827;
+  border-color:var(--green);
+  font-weight:bold;
 }
 .primary:hover { color:#101827; }
 .notice {
-  margin-top:25px;padding:16px;
-  border:1px solid #34455d;border-radius:12px;
-  color:var(--muted);font-size:13px;
+  margin-top:25px;
+  padding:16px;
+  border:1px solid #34455d;
+  border-radius:12px;
+  color:var(--muted);
+  font-size:13px;
 }
 footer {
-  text-align:center;padding:25px;color:var(--muted);
-  border-top:1px solid #29374c;margin-top:30px;
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+  border-top:1px solid #29374c;
+  margin-top:30px;
 }
 [hidden] { display:none !important; }
 </style>
 </head>
 <body>
+
 <header>
   <div class="logo">VATO</div>
   <nav>
@@ -133,31 +155,53 @@ footer {
   <p id="empty" class="muted" hidden>Keine passenden Angebote gefunden.</p>
 
   <section class="notice">
-    <strong>Transparenz:</strong> Einige Links auf VATO können künftig
-    Affiliate-Links sein. Bei einem Kauf über solche Links kann VATO
-    eine Provision erhalten, ohne dass dir dadurch zusätzliche Kosten
-    entstehen müssen. Die aktuellen Produkte sind nur Beispiele;
-    es bestehen noch keine echten Partnerangebote.
+    <strong>Werbehinweis:</strong> VATO kann Affiliate-Links enthalten.
+    Wenn du über einen solchen Link einkaufst, können wir eine Provision
+    erhalten. Für dich entstehen dadurch grundsätzlich keine zusätzlichen Kosten.
+    Weitere Partnerangebote werden später ergänzt.
   </section>
 </main>
 
 <footer>
   <div class="logo">VATO</div>
   <p>Deine Plattform für smarte Empfehlungen.</p>
-  <p>Impressum und Datenschutz werden vor dem öffentlichen
-     kommerziellen Betrieb ergänzt.</p>
+  <p>Impressum und Datenschutzerklärung müssen vor dem kommerziellen Betrieb ergänzt werden.</p>
 </footer>
 
 <script>
 const products = [
-  {id:1,name:"Fitness-Zubehör",category:"Fitness",
-   emoji:"🏋️",description:"Beispiel für Trainingszubehör."},
-  {id:2,name:"Kopfhörer",category:"Technik",
-   emoji:"🎧",description:"Beispiel für Technik-Angebote."},
-  {id:3,name:"Alltags-Accessoires",category:"Lifestyle",
-   emoji:"⌚",description:"Beispiel für praktische Produkte."},
-  {id:4,name:"Reise-Zubehör",category:"Reisen",
-   emoji:"🎒",description:"Beispiel für Reise-Empfehlungen."}
+  {
+    id:1,
+    name:"Fitness-Zubehör",
+    category:"Fitness",
+    emoji:"🏋️",
+    description:"Trainingszubehör bei Amazon entdecken.",
+    link:"https://link.amazon/B02FNdCWe"
+  },
+  {
+    id:2,
+    name:"Kopfhörer",
+    category:"Technik",
+    emoji:"🎧",
+    description:"Beispiel für Technik-Angebote.",
+    link:""
+  },
+  {
+    id:3,
+    name:"Alltags-Accessoires",
+    category:"Lifestyle",
+    emoji:"⌚",
+    description:"Beispiel für praktische Produkte.",
+    link:""
+  },
+  {
+    id:4,
+    name:"Reise-Zubehör",
+    category:"Reisen",
+    emoji:"🎒",
+    description:"Beispiel für Reise-Empfehlungen.",
+    link:""
+  }
 ];
 
 let category = "Alle";
@@ -174,9 +218,11 @@ function setCategory(value,button) {
 
 function showMode(value) {
   mode = value;
-  document.getElementById("allBtn").classList.toggle("active",value==="all");
+  document.getElementById("allBtn")
+    .classList.toggle("active",value==="all");
   render();
-  document.getElementById("angebote").scrollIntoView({behavior:"smooth"});
+  document.getElementById("angebote")
+    .scrollIntoView({behavior:"smooth"});
 }
 
 function toggleFavorite(id) {
@@ -188,6 +234,7 @@ function toggleFavorite(id) {
 
 function render() {
   const term = document.getElementById("search").value.toLowerCase();
+
   const shown = products.filter(p =>
     (category==="Alle" || p.category===category) &&
     (mode!=="favorites" || favorites.includes(p.id)) &&
@@ -200,17 +247,27 @@ function render() {
       <p class="green">${p.category}</p>
       <h3>${p.name}</h3>
       <p class="muted">${p.description}</p>
+
       <button onclick="toggleFavorite(${p.id})">
         ${favorites.includes(p.id)?"♥ Gespeichert":"♡ Merken"}
       </button>
-      <button class="primary" onclick="alert('Dies ist ein Beispielangebot. Ein echter Partnerlink wird später hinzugefügt.')">
-        Angebot ansehen →
-      </button>
+
+      ${
+        p.link
+        ? `<a href="${p.link}" target="_blank" rel="sponsored nofollow noopener"
+             style="text-decoration:none">
+             <button class="primary" style="width:100%">Angebot ansehen →</button>
+           </a>`
+        : `<button class="primary" onclick="alert('Für dieses Produkt wird noch ein Partnerlink hinzugefügt.')">
+             Bald verfügbar
+           </button>`
+      }
     </article>
   `).join("");
 
   document.getElementById("empty").hidden = shown.length!==0;
 }
+
 render();
 </script>
 </body>
