@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -89,7 +90,7 @@ input {
 .product h3 { margin:0; }
 .product p { margin:0; }
 .product button { margin-top:auto; }
-.product a { display:block; margin-top:auto; }
+.product a { display:block; margin-top:auto; text-decoration:none; }
 .primary {
   background:var(--green);
   color:#101827;
@@ -121,7 +122,7 @@ footer {
   <div class="logo">VATO</div>
   <nav>
     <button onclick="showMode('all')" id="allBtn" class="active">Startseite</button>
-    <button onclick="showMode('favorites')">♡ Favoriten</button>
+    <button onclick="showMode('favorites')" id="favoritesBtn">♡ Favoriten</button>
   </nav>
 </header>
 
@@ -157,16 +158,22 @@ footer {
 
   <section class="notice">
     <strong>Werbehinweis:</strong> VATO kann Affiliate-Links enthalten.
-    Wenn du über einen solchen Link einkaufst, können wir eine Provision
-    erhalten. Für dich entstehen dadurch grundsätzlich keine zusätzlichen Kosten.
-    Weitere Partnerangebote werden später ergänzt.
+    Wenn du über einen solchen Link einkaufst, können wir unter bestimmten
+    Voraussetzungen eine Provision erhalten. Für dich entstehen dadurch
+    grundsätzlich keine zusätzlichen Kosten.
+  </section>
+
+  <section class="notice">
+    <strong>Hinweis:</strong> Vor dem kommerziellen Betrieb müssen ein
+    vollständiges Impressum und eine Datenschutzerklärung ergänzt werden.
+    Verwende nur Partnerlinks, die deinem eigenen Partnerkonto zugeordnet sind.
   </section>
 </main>
 
 <footer>
   <div class="logo">VATO</div>
   <p>Deine Plattform für smarte Empfehlungen.</p>
-  <p>Impressum und Datenschutzerklärung müssen vor dem kommerziellen Betrieb ergänzt werden.</p>
+  <p>Impressum und Datenschutzerklärung vor dem kommerziellen Betrieb ergänzen.</p>
 </footer>
 
 <script>
@@ -185,7 +192,7 @@ const products = [
     category:"Fitness",
     emoji:"👟",
     description:"Sportschuhe bei Amazon entdecken.",
-    link:"https://link.amazon/B03wphKlA"
+    link:"https://link.amazon/B06bi44Xz"
   },
   {
     id:3,
@@ -235,8 +242,13 @@ function setCategory(value,button) {
 
 function showMode(value) {
   mode = value;
+
   document.getElementById("allBtn")
     .classList.toggle("active",value==="all");
+
+  document.getElementById("favoritesBtn")
+    .classList.toggle("active",value==="favorites");
+
   render();
   document.getElementById("angebote")
     .scrollIntoView({behavior:"smooth"});
@@ -250,7 +262,7 @@ function toggleFavorite(id) {
 }
 
 function render() {
-  const term = document.getElementById("search").value.toLowerCase();
+  const term = document.getElementById("search").value.toLowerCase().trim();
 
   const shown = products.filter(p =>
     (category==="Alle" || p.category===category) &&
@@ -265,16 +277,17 @@ function render() {
       <h3>${p.name}</h3>
       <p class="muted">${p.description}</p>
 
-      <button onclick="toggleFavorite(${p.id})">
+      <button type="button" onclick="toggleFavorite(${p.id})">
         ${favorites.includes(p.id)?"♥ Gespeichert":"♡ Merken"}
       </button>
 
       ${
         p.link
         ? `<a href="${p.link}" target="_blank" rel="sponsored nofollow noopener">
-             <button class="primary" style="width:100%">Angebot ansehen →</button>
+             <button type="button" class="primary" style="width:100%">Angebot ansehen →</button>
            </a>`
-        : `<button class="primary" onclick="alert('Für dieses Produkt wird noch ein Partnerlink hinzugefügt.')">
+        : `<button type="button" class="primary"
+             onclick="alert('Für dieses Produkt wird noch ein Partnerlink hinzugefügt.')">
              Bald verfügbar
            </button>`
       }
