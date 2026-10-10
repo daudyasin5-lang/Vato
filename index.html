@@ -89,6 +89,7 @@ input {
 .product h3 { margin:0; }
 .product p { margin:0; }
 .product button { margin-top:auto; }
+.product a { display:block; margin-top:auto; }
 .primary {
   background:var(--green);
   color:#101827;
@@ -192,7 +193,7 @@ const products = [
     category:"Fitness",
     emoji:"🥊",
     description:"Boxhandschuhe bei Amazon entdecken.",
-    link:""
+    link:"https://link.amazon/B0dcdo7Tu"
   },
   {
     id:4,
@@ -270,8 +271,7 @@ function render() {
 
       ${
         p.link
-        ? `<a href="${p.link}" target="_blank" rel="sponsored nofollow noopener"
-             style="text-decoration:none">
+        ? `<a href="${p.link}" target="_blank" rel="sponsored nofollow noopener">
              <button class="primary" style="width:100%">Angebot ansehen →</button>
            </a>`
         : `<button class="primary" onclick="alert('Für dieses Produkt wird noch ein Partnerlink hinzugefügt.')">
