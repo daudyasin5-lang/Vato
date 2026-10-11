@@ -5,234 +5,393 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101827">
-<meta name="description" content="VATO – Fitness, Technik, Lifestyle und Angebote entdecken.">
-<title>VATO – Angebote entdecken</title>
+<meta name="description" content="VATO – Entdecke ausgewählte Fitnessprodukte, Technik, Lifestyle und Angebote.">
+<title>VATO – Entdecke deine Favoriten</title>
 
 <style>
 :root {
-  --bg:#101827;
-  --card:#1d293b;
-  --green:#35e0a1;
-  --muted:#b8c4d8;
-  --border:#34455d;
+  --bg:#0b1220;
+  --surface:#111c2e;
+  --card:#17253a;
+  --green:#42edb0;
+  --green-dark:#153d38;
+  --text:#f4f7fc;
+  --muted:#aab9cf;
+  --border:#2c3e56;
+  --radius:20px;
 }
 * { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+html { scroll-behavior:smooth; scroll-padding-top:90px; }
 body {
   margin:0;
-  font-family:Arial,sans-serif;
+  font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   background:var(--bg);
-  color:white;
+  color:var(--text);
+  line-height:1.6;
+}
+a { color:inherit; }
+button,input { font:inherit; }
+button { cursor:pointer; }
+button:focus-visible,a:focus-visible,input:focus-visible {
+  outline:3px solid var(--green);
+  outline-offset:3px;
 }
 header {
-  padding:16px;
+  position:sticky;
+  top:0;
+  z-index:10;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
   flex-wrap:wrap;
-  border-bottom:1px solid #29374c;
+  gap:12px;
+  padding:14px max(16px,calc((100% - 1100px)/2));
+  background:rgba(11,18,32,.96);
+  border-bottom:1px solid var(--border);
+  backdrop-filter:blur(12px);
 }
 .logo {
-  color:var(--green);
+  text-decoration:none;
   font-size:30px;
-  font-weight:900;
+  font-weight:950;
+  letter-spacing:2px;
+  color:var(--green);
 }
 nav,.categories {
   display:flex;
-  gap:8px;
   flex-wrap:wrap;
+  gap:8px;
 }
-button,input { font:inherit; }
 button {
-  cursor:pointer;
+  color:var(--text);
+  background:var(--surface);
   border:1px solid var(--border);
-  background:var(--card);
-  color:white;
-  padding:12px 14px;
-  border-radius:10px;
+  border-radius:12px;
+  padding:11px 14px;
+  transition:transform .18s,border-color .18s,background .18s;
 }
-button:hover,.active {
+button:hover { border-color:var(--green); }
+button:active { transform:scale(.98); }
+button.active {
   border-color:var(--green);
   color:var(--green);
+  background:#18342f;
 }
-button:focus-visible,a:focus-visible,input:focus-visible {
-  outline:2px solid var(--green);
-  outline-offset:3px;
-}
-main {
-  max-width:1050px;
-  margin:auto;
-  padding:22px 16px;
-}
+main { max-width:1100px; margin:auto; padding:26px 16px; }
 .hero {
-  padding:30px 22px;
-  background:linear-gradient(135deg,#1d293b,#123c42);
-  border-radius:20px;
-  margin-bottom:28px;
+  position:relative;
+  overflow:hidden;
+  padding:clamp(26px,6vw,60px);
+  border:1px solid #294c53;
+  border-radius:28px;
+  background:
+    radial-gradient(ellipse at 90% 15%,rgba(66,237,176,.18),transparent 38%),
+    linear-gradient(135deg,#17253a,#102f36 75%,#10251f);
+}
+.eyebrow {
+  color:var(--green);
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+  font-weight:850;
 }
 h1 {
-  font-size:clamp(30px,6vw,46px);
-  margin:0 0 12px;
+  font-size:clamp(36px,7vw,62px);
+  line-height:1.08;
+  letter-spacing:-1.5px;
+  margin:16px 0;
+  max-width:700px;
 }
-h2 { margin-top:28px; }
-p { line-height:1.6; }
+h2 { font-size:clamp(24px,4vw,32px); margin:0 0 8px; }
+h3 { line-height:1.3; }
+p { margin-top:0; }
 .green { color:var(--green); }
 .muted { color:var(--muted); }
-.primary {
-  display:inline-block;
-  background:var(--green);
-  color:#101827;
-  border:1px solid var(--green);
-  font-weight:bold;
+.hero-copy { max-width:600px; color:#d1dbea; font-size:17px; }
+.actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+.primary,.secondary {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
   text-decoration:none;
-  padding:13px 17px;
-  border-radius:10px;
+  font-weight:800;
+  border-radius:12px;
+  padding:13px 18px;
 }
-.primary:hover {
-  color:#101827;
-  background:#8af4cd;
+.primary {
+  background:var(--green);
+  color:#071b17;
+  border:1px solid var(--green);
 }
-.search {
-  width:100%;
-  margin:18px 0;
+.primary:hover { background:#8af5ce; }
+.secondary {
+  background:rgba(255,255,255,.04);
+  color:var(--text);
+  border:1px solid var(--border);
+}
+.highlights {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+  margin:20px 0 38px;
+}
+.highlight {
+  padding:17px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+}
+.highlight strong { display:block; margin-bottom:3px; }
+.highlight span { font-size:13px; color:var(--muted); }
+.section-head { margin-bottom:18px; }
+.search-wrap { position:relative; margin:20px 0 14px; }
+.search-icon {
+  position:absolute;
+  left:15px;
+  top:50%;
+  transform:translateY(-50%);
+  pointer-events:none;
 }
 input {
-  padding:14px;
-  border-radius:10px;
+  width:100%;
+  padding:15px 16px 15px 44px;
+  color:var(--text);
+  background:var(--surface);
   border:1px solid var(--border);
-  background:var(--card);
-  color:white;
+  border-radius:14px;
 }
-.categories { margin:16px 0 24px; }
+input::placeholder { color:#91a2bb; }
+.categories { margin-bottom:24px; }
 .products {
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:repeat(3,minmax(0,1fr));
   gap:16px;
 }
 .product {
-  background:var(--card);
-  border:1px solid #30415a;
-  border-radius:16px;
-  padding:18px;
+  min-width:0;
   display:flex;
   flex-direction:column;
   gap:12px;
-  min-width:0;
+  padding:20px;
+  background:linear-gradient(155deg,#192940,#121e30);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  transition:transform .2s,border-color .2s;
 }
-.product .emoji { font-size:42px; }
-.product h3,.product p { margin:0; }
-.product .description { color:var(--muted); }
-.product .favorite { margin-top:4px; }
+.product:hover {
+  transform:translateY(-3px);
+  border-color:#557269;
+}
+.product.vita {
+  background:
+    radial-gradient(ellipse at top right,rgba(66,237,176,.13),transparent 55%),
+    linear-gradient(155deg,#1b303b,#132b30);
+  border-color:#3bc99b;
+}
+.product .emoji {
+  display:grid;
+  place-items:center;
+  width:58px;
+  height:58px;
+  border-radius:17px;
+  background:rgba(66,237,176,.09);
+  font-size:32px;
+}
+.product h3 { margin:0; font-size:19px; }
+.product .description { margin:0; color:var(--muted); font-size:14px; }
+.product-tag {
+  align-self:flex-start;
+  color:var(--green);
+  background:rgba(66,237,176,.08);
+  border:1px solid rgba(66,237,176,.25);
+  border-radius:30px;
+  padding:4px 9px;
+  font-size:11px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+.coupon {
+  padding:11px;
+  border:1px dashed var(--green);
+  border-radius:12px;
+  text-align:center;
+  color:var(--green);
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:1px;
+}
+.copy-button { width:100%; }
 .product-link {
   display:block;
   margin-top:auto;
+  padding:13px 10px;
+  border:1px solid var(--green);
+  border-radius:12px;
   text-align:center;
   text-decoration:none;
+  font-weight:850;
+  font-size:14px;
+  color:#071b17;
   background:var(--green);
-  color:#101827;
-  border:1px solid var(--green);
-  font-weight:bold;
-  padding:12px 10px;
-  border-radius:10px;
 }
-.product-link:hover {
-  background:#8af4cd;
-  color:#101827;
-}
-.vita {
-  border:2px solid var(--green);
-  background:linear-gradient(145deg,#1d293b,#123c42);
-}
-.coupon {
-  border:1px dashed var(--green);
-  border-radius:10px;
-  padding:12px;
-  text-align:center;
-  font-size:20px;
-  font-weight:bold;
-  color:var(--green);
-}
+.product-link:hover { background:#8af5ce; }
+.favorite { width:100%; font-size:13px; }
 .notice {
-  margin-top:24px;
-  padding:16px;
+  margin-top:22px;
+  padding:17px;
   border:1px solid var(--border);
-  border-radius:12px;
+  border-radius:15px;
+  background:var(--surface);
   color:var(--muted);
   font-size:13px;
   overflow-wrap:anywhere;
 }
-footer {
+.notice strong { color:var(--text); }
+#copyStatus { margin:0; font-size:13px; }
+#empty {
+  padding:28px 16px;
   text-align:center;
-  padding:25px;
-  color:var(--muted);
-  border-top:1px solid #29374c;
-  margin-top:30px;
+  border:1px dashed var(--border);
+  border-radius:16px;
 }
+footer {
+  margin-top:35px;
+  padding:30px 16px;
+  text-align:center;
+  background:#080e19;
+  border-top:1px solid var(--border);
+}
+footer p { margin:5px 0; }
+footer .muted { font-size:13px; }
 [hidden] { display:none !important; }
+
+@media (max-width:760px) {
+  .products { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .highlights { grid-template-columns:1fr; }
+  .highlight { padding:13px 16px; }
+}
+@media (max-width:480px) {
+  header { padding:12px 14px; }
+  .logo { font-size:26px; }
+  nav { gap:5px; }
+  nav button { padding:9px 10px; font-size:13px; }
+  main { padding:18px 12px; }
+  .hero { padding:26px 20px; border-radius:22px; }
+  .products { grid-template-columns:1fr; }
+  .product { padding:18px; }
+  .categories button { padding:9px 11px; font-size:13px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  *,*::before,*::after {
+    scroll-behavior:auto !important;
+    transition:none !important;
+  }
+}
 </style>
 </head>
 
 <body>
-
 <header>
-  <a href="#start" class="logo" style="text-decoration:none">VATO</a>
+  <a href="#start" class="logo" aria-label="VATO Startseite">VATO</a>
   <nav aria-label="Hauptnavigation">
-    <button type="button" id="allBtn" class="active"
-      onclick="showMode('all')">Startseite</button>
-    <button type="button" id="favoritesBtn"
-      onclick="showMode('favorites')">♡ Favoriten</button>
+    <button type="button" id="allBtn" class="active">Startseite</button>
+    <button type="button" id="favoritesBtn">♡ Favoriten</button>
   </nav>
 </header>
 
 <main id="start">
-
   <section class="hero">
-    <p class="green">★ DEINE ANGEBOTSPLATTFORM</p>
-    <h1>Willkommen bei <span class="green">VATO</span></h1>
-    <p>Entdecke Fitnessprodukte, Technik, Lifestyle und interessante Angebote. Finde deine nächsten Favoriten.</p>
-    <button type="button" class="primary"
-      onclick="document.getElementById('angebote').scrollIntoView({behavior:'smooth'})">
-      Angebote entdecken ↓
-    </button>
+    <p class="eyebrow">Deine Welt. Deine Auswahl.</p>
+    <h1>Entdecke deine nächsten <span class="green">Favoriten.</span></h1>
+    <p class="hero-copy">
+      Willkommen bei VATO. Entdecke ausgewählte Angebote aus Fitness,
+      Technik, Lifestyle und mehr – einfach, übersichtlich und an einem Ort.
+    </p>
+    <div class="actions">
+      <a class="primary" href="#angebote">Angebote entdecken ↓</a>
+      <a class="secondary" href="#vato-info">Mehr über VATO</a>
+    </div>
   </section>
 
-  <h2 id="angebote">Angebote entdecken</h2>
-  <p class="muted">Suche nach Produkten oder wähle eine Kategorie.</p>
+  <section class="highlights" aria-label="VATO Vorteile">
+    <div class="highlight">
+      <strong>💪 Fitness & Training</strong>
+      <span>Ideen für dein Workout</span>
+    </div>
+    <div class="highlight">
+      <strong>🎧 Technik & Alltag</strong>
+      <span>Praktische Produkte entdecken</span>
+    </div>
+    <div class="highlight">
+      <strong>✨ Einfach entdecken</strong>
+      <span>Suche, Kategorien und Favoriten</span>
+    </div>
+  </section>
 
-  <input class="search" id="search"
-    placeholder="🔎 Angebote suchen..."
-    aria-label="Angebote suchen">
+  <section id="angebote">
+    <div class="section-head">
+      <p class="eyebrow">Die VATO Auswahl</p>
+      <h2 id="sectionTitle">Angebote entdecken</h2>
+      <p class="muted">Suche nach Produkten oder wähle deine Kategorie.</p>
+    </div>
 
-  <div class="categories" aria-label="Produktkategorien">
-    <button type="button" class="active" data-category="Alle">Alle</button>
-    <button type="button" data-category="Technik">📱 Technik</button>
-    <button type="button" data-category="Fitness">💪 Fitness</button>
-    <button type="button" data-category="Lifestyle">✨ Lifestyle</button>
-    <button type="button" data-category="Reisen">✈️ Reisen</button>
-  </div>
+    <div class="search-wrap">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input id="search" type="search"
+        placeholder="Produkte, Fitness, Technik suchen …"
+        aria-label="Angebote suchen">
+    </div>
 
-  <div class="products" id="products"></div>
-  <p id="empty" class="muted" hidden>Keine passenden Angebote gefunden.</p>
+    <div class="categories" aria-label="Produktkategorien">
+      <button type="button" class="active" data-category="Alle">Alle</button>
+      <button type="button" data-category="Technik">📱 Technik</button>
+      <button type="button" data-category="Fitness">💪 Fitness</button>
+      <button type="button" data-category="Lifestyle">✨ Lifestyle</button>
+      <button type="button" data-category="Reisen">✈️ Reisen</button>
+    </div>
+
+    <div class="products" id="products" aria-live="polite"></div>
+    <p id="empty" class="muted" hidden>
+      Keine passenden Angebote gefunden. Ändere deine Suche oder Kategorie.
+    </p>
+  </section>
+
+  <section class="notice" id="vato-info">
+    <strong>Über VATO</strong>
+    <p>
+      VATO hilft dir dabei, interessante Produkte und Angebote aus
+      verschiedenen Bereichen zu entdecken. Die Auswahl wird nach und nach
+      erweitert.
+    </p>
+  </section>
 
   <section class="notice">
-    <strong>Werbehinweis:</strong>
-    VATO enthält Partnerlinks. Wenn du über einen solchen Link einkaufst,
-    kann unter bestimmten Voraussetzungen eine Provision anfallen.
-    Für dich entstehen dadurch grundsätzlich keine zusätzlichen Kosten.
+    <strong>Werbe- und Affiliate-Hinweis</strong>
+    <p>
+      VATO enthält Affiliate-Links. Wenn du über bestimmte Links einkaufst,
+      können wir eine Provision erhalten. Für dich entstehen dadurch
+      grundsätzlich keine zusätzlichen Kosten.
+    </p>
+    <p>
+      Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.
+      VitaStrong-Angebote können ebenfalls provisionsbasiert sein.
+    </p>
   </section>
 
   <section class="notice">
-    <strong>Hinweis:</strong>
-    Bitte prüfe alle Partnerlinks vor der kommerziellen Nutzung.
-    Preise, Verfügbarkeit und Angebotsbedingungen können sich ändern.
+    <strong>Produktinformationen</strong>
+    <p>
+      Preise, Verfügbarkeit und Angebotsbedingungen können sich ändern.
+      Maßgeblich sind die Angaben auf der jeweiligen Partnerseite.
+    </p>
   </section>
-
 </main>
 
 <footer>
-  <p><strong class="green">VATO</strong> – Angebote entdecken</p>
-  <p>Mit Sorgfalt ausgewählte Empfehlungen.</p>
+  <p><strong class="green">VATO</strong> – Entdecke deine Favoriten.</p>
+  <p class="muted">Fitness · Technik · Lifestyle · Angebote</p>
+  <p class="muted">Unabhängige Produktauswahl mit Partnerlinks.</p>
 </footer>
 
 <script>
@@ -249,7 +408,7 @@ const products = [
     category:"Fitness",
     emoji:"💪",
     description:"Entdecke Trainingszubehör für dein Workout.",
-    link:"https://www.amazon.de/s?k=Fitness+Zubehoer&tag=" + AMAZON_TAG,
+    link:"https://www.amazon.de/s?k=Fitness+Zubehoer&tag="+AMAZON_TAG,
     button:"Fitnessprodukte entdecken"
   },
   {
@@ -257,8 +416,8 @@ const products = [
     name:"Sportschuhe",
     category:"Fitness",
     emoji:"👟",
-    description:"Finde Sportschuhe für Training und Alltag.",
-    link:"https://www.amazon.de/s?k=Sportschuhe&tag=" + AMAZON_TAG,
+    description:"Sportschuhe für Training und Alltag entdecken.",
+    link:"https://www.amazon.de/s?k=Sportschuhe&tag="+AMAZON_TAG,
     button:"Sportschuhe entdecken"
   },
   {
@@ -267,7 +426,7 @@ const products = [
     category:"Fitness",
     emoji:"🥊",
     description:"Entdecke Boxhandschuhe und Boxausrüstung.",
-    link:"https://www.amazon.de/s?k=Boxhandschuhe&tag=" + AMAZON_TAG,
+    link:"https://www.amazon.de/s?k=Boxhandschuhe&tag="+AMAZON_TAG,
     button:"Boxausrüstung entdecken"
   },
   {
@@ -275,8 +434,8 @@ const products = [
     name:"Kurzhanteln",
     category:"Fitness",
     emoji:"🏋️",
-    description:"Trainingsgewichte für dein Training zu Hause.",
-    link:"https://www.amazon.de/s?k=Kurzhanteln&tag=" + AMAZON_TAG,
+    description:"Trainingsgewichte für dein Workout zu Hause.",
+    link:"https://www.amazon.de/s?k=Kurzhanteln&tag="+AMAZON_TAG,
     button:"Hanteln entdecken"
   },
   {
@@ -284,9 +443,9 @@ const products = [
     name:"VitaStrong",
     category:"Fitness",
     emoji:"🟢",
-    description:"Entdecke VitaStrong und nutze deinen Rabattcode Yasin786.",
+    description:"Entdecke VitaStrong und deinen persönlichen Rabattcode.",
     link:VITA_LINK,
-    button:"Jetzt bei VitaStrong einkaufen",
+    button:"Jetzt VitaStrong entdecken",
     vita:true
   },
   {
@@ -295,7 +454,7 @@ const products = [
     category:"Technik",
     emoji:"🎧",
     description:"Entdecke Kopfhörer und Technikzubehör.",
-    link:"https://www.amazon.de/s?k=Kopfhoerer&tag=" + AMAZON_TAG,
+    link:"https://www.amazon.de/s?k=Kopfhoerer&tag="+AMAZON_TAG,
     button:"Technik entdecken"
   },
   {
@@ -303,8 +462,8 @@ const products = [
     name:"Alltags-Accessoires",
     category:"Lifestyle",
     emoji:"✨",
-    description:"Praktische Ideen und Accessoires für jeden Tag.",
-    link:"https://www.amazon.de/s?k=Alltags+Accessoires&tag=" + AMAZON_TAG,
+    description:"Praktische Accessoires und Ideen für jeden Tag.",
+    link:"https://www.amazon.de/s?k=Alltags+Accessoires&tag="+AMAZON_TAG,
     button:"Accessoires entdecken"
   },
   {
@@ -312,51 +471,57 @@ const products = [
     name:"Reise-Zubehör",
     category:"Reisen",
     emoji:"✈️",
-    description:"Entdecke nützliches Zubehör für unterwegs.",
-    link:"https://www.amazon.de/s?k=Reisezubehoer&tag=" + AMAZON_TAG,
+    description:"Nützliches Zubehör für deine nächste Reise.",
+    link:"https://www.amazon.de/s?k=Reisezubehoer&tag="+AMAZON_TAG,
     button:"Reisezubehör entdecken"
   }
 ];
 
+const FAVORITES_KEY = "vato-favorites-v2";
 let category = "Alle";
 let mode = "all";
 const favorites = new Set();
 
+try {
+  const saved = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
+  if (Array.isArray(saved)) {
+    saved.filter(id => products.some(p => p.id === id))
+      .forEach(id => favorites.add(id));
+  }
+} catch (error) {
+  // Die Seite funktioniert auch, wenn lokaler Speicher nicht verfügbar ist.
+}
+
 const productsBox = document.getElementById("products");
 const empty = document.getElementById("empty");
 const search = document.getElementById("search");
+const sectionTitle = document.getElementById("sectionTitle");
+
+function saveFavorites() {
+  try {
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites]));
+  } catch (error) {
+    // Favoriten bleiben bis zum Neuladen der Seite im Arbeitsspeicher.
+  }
+}
 
 function showMode(nextMode) {
   mode = nextMode;
-
-  document.getElementById("allBtn").classList.toggle(
-    "active", mode === "all"
-  );
-  document.getElementById("favoritesBtn").classList.toggle(
-    "active", mode === "favorites"
-  );
-
-  document.getElementById("angebote").textContent =
-    mode === "favorites" ? "Deine Favoriten" : "Angebote entdecken";
-
+  document.getElementById("allBtn").classList.toggle("active", mode === "all");
+  document.getElementById("favoritesBtn").classList.toggle("active", mode === "favorites");
+  document.getElementById("allBtn").setAttribute("aria-pressed", String(mode === "all"));
+  document.getElementById("favoritesBtn").setAttribute("aria-pressed", String(mode === "favorites"));
+  sectionTitle.textContent = mode === "favorites" ? "Deine Favoriten" : "Angebote entdecken";
   render();
-
-  document.getElementById("angebote").scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
 }
 
 function setCategory(nextCategory) {
   category = nextCategory;
-
   document.querySelectorAll("[data-category]").forEach(button => {
-    button.classList.toggle(
-      "active",
-      button.dataset.category === category
-    );
+    const active = button.dataset.category === category;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
   });
-
   render();
 }
 
@@ -366,119 +531,97 @@ function toggleFavorite(id) {
   } else {
     favorites.add(id);
   }
+  saveFavorites();
   render();
 }
 
-async function copyCode() {
+async function copyCode(status) {
   try {
     await navigator.clipboard.writeText(VITA_CODE);
-    document.getElementById("copyStatus").textContent =
-      "Rabattcode kopiert: " + VITA_CODE;
+    status.textContent = "Rabattcode wurde kopiert: " + VITA_CODE;
   } catch (error) {
-    document.getElementById("copyStatus").textContent =
-      "Dein Rabattcode: " + VITA_CODE +
-      " (bitte manuell kopieren)";
+    status.textContent = "Rabattcode: " + VITA_CODE + " – bitte manuell kopieren.";
   }
+}
+
+function makeElement(tag, className, text) {
+  const element = document.createElement(tag);
+  if (className) element.className = className;
+  if (text !== undefined) element.textContent = text;
+  return element;
 }
 
 function render() {
   const query = search.value.trim().toLowerCase();
 
   const filtered = products.filter(product => {
-    const matchesCategory =
-      category === "Alle" || product.category === category;
-
-    const matchesSearch =
-      (product.name + " " + product.description + " " +
-       product.category).toLowerCase().includes(query);
-
-    const matchesMode =
-      mode === "all" || favorites.has(product.id);
-
+    const matchesCategory = category === "Alle" || product.category === category;
+    const matchesSearch = (
+      product.name + " " + product.description + " " + product.category
+    ).toLowerCase().includes(query);
+    const matchesMode = mode === "all" || favorites.has(product.id);
     return matchesCategory && matchesSearch && matchesMode;
   });
 
   productsBox.replaceChildren();
 
   filtered.forEach(product => {
-    const card = document.createElement("article");
-    card.className = "product" + (product.vita ? " vita" : "");
-
-    const emoji = document.createElement("div");
-    emoji.className = "emoji";
-    emoji.textContent = product.emoji;
-    card.appendChild(emoji);
-
-    const title = document.createElement("h3");
-    title.textContent = product.name;
-    card.appendChild(title);
-
-    const description = document.createElement("p");
-    description.className = "description";
-    description.textContent = product.description;
-    card.appendChild(description);
+    const card = makeElement("article", "product" + (product.vita ? " vita" : ""));
 
     if (product.vita) {
-      const codeLabel = document.createElement("p");
-      codeLabel.textContent = "Dein persönlicher Rabattcode:";
-      card.appendChild(codeLabel);
+      card.appendChild(makeElement("span", "product-tag", "DEIN PARTNERANGEBOT"));
+    }
 
-      const coupon = document.createElement("div");
-      coupon.className = "coupon";
-      coupon.textContent = VITA_CODE;
-      card.appendChild(coupon);
+    card.appendChild(makeElement("div", "emoji", product.emoji));
+    card.appendChild(makeElement("h3", "", product.name));
+    card.appendChild(makeElement("p", "description", product.description));
 
-      const copyButton = document.createElement("button");
+    if (product.vita) {
+      card.appendChild(makeElement("p", "muted", "Dein persönlicher Rabattcode:"));
+      card.appendChild(makeElement("div", "coupon", VITA_CODE));
+
+      const copyButton = makeElement("button", "copy-button", "📋 Rabattcode kopieren");
       copyButton.type = "button";
-      copyButton.textContent = "📋 Rabattcode kopieren";
-      copyButton.addEventListener("click", copyCode);
-      card.appendChild(copyButton);
-
-      const status = document.createElement("p");
-      status.id = "copyStatus";
-      status.className = "muted";
+      const status = makeElement("p", "muted", "");
       status.setAttribute("aria-live", "polite");
+      copyButton.addEventListener("click", () => copyCode(status));
+      card.appendChild(copyButton);
       card.appendChild(status);
     }
 
-    const link = document.createElement("a");
-    link.className = "product-link";
+    const link = makeElement("a", "product-link", product.button);
     link.href = product.link;
     link.target = "_blank";
     link.rel = "noopener noreferrer sponsored";
-    link.textContent = product.button;
     card.appendChild(link);
 
-    const favoriteButton = document.createElement("button");
-    favoriteButton.type = "button";
-    favoriteButton.className = "favorite";
-    favoriteButton.textContent = favorites.has(product.id)
-      ? "♥ Aus Favoriten entfernen"
-      : "♡ Zu Favoriten hinzufügen";
-    favoriteButton.setAttribute(
-      "aria-pressed", String(favorites.has(product.id))
+    const favoriteButton = makeElement(
+      "button",
+      "favorite",
+      favorites.has(product.id)
+        ? "♥ Aus Favoriten entfernen"
+        : "♡ Zu Favoriten hinzufügen"
     );
-    favoriteButton.addEventListener("click", () => {
-      toggleFavorite(product.id);
-    });
+    favoriteButton.type = "button";
+    favoriteButton.setAttribute("aria-pressed", String(favorites.has(product.id)));
+    favoriteButton.addEventListener("click", () => toggleFavorite(product.id));
     card.appendChild(favoriteButton);
 
     productsBox.appendChild(card);
   });
 
-  empty.hidden = filtered.length !== 0;
+  empty.hidden = filtered.length > 0;
 }
 
+document.getElementById("allBtn").addEventListener("click", () => showMode("all"));
+document.getElementById("favoritesBtn").addEventListener("click", () => showMode("favorites"));
 search.addEventListener("input", render);
 
 document.querySelectorAll("[data-category]").forEach(button => {
-  button.addEventListener("click", () => {
-    setCategory(button.dataset.category);
-  });
+  button.addEventListener("click", () => setCategory(button.dataset.category));
 });
 
-render();
+showMode("all");
 </script>
-
 </body>
 </html>
