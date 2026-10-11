@@ -1,132 +1,175 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101827">
-<meta name="description" content="VATO – Entdecke Fitnessprodukte, Technik und interessante Angebote.">
+<meta name="description" content="VATO – Fitness, Technik, Lifestyle und Angebote entdecken.">
 <title>VATO – Angebote entdecken</title>
+
 <style>
 :root {
-  --bg:#101827;
-  --card:#1d293b;
-  --green:#35e0a1;
-  --muted:#b8c4d8;
+  --bg: #101827;
+  --card: #1d293b;
+  --green: #35e0a1;
+  --muted: #b8c4d8;
 }
-* { box-sizing:border-box; }
-html { scroll-behavior:smooth; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:var(--bg);
-  color:white;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: white;
 }
 header {
-  padding:18px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  border-bottom:1px solid #29374c;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #29374c;
 }
-.logo { color:var(--green);font-size:30px;font-weight:900; }
-nav { display:flex;gap:8px;flex-wrap:wrap; }
-button,input { font:inherit; }
+.logo {
+  color: var(--green);
+  font-size: 30px;
+  font-weight: 900;
+}
+nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+button, input { font: inherit; }
 button {
-  cursor:pointer;
-  border:1px solid #34455d;
-  background:var(--card);
-  color:white;
-  padding:11px 14px;
-  border-radius:10px;
+  cursor: pointer;
+  border: 1px solid #34455d;
+  background: var(--card);
+  color: white;
+  padding: 11px 14px;
+  border-radius: 10px;
 }
-button:hover,.active { border-color:var(--green);color:var(--green); }
-button:focus-visible,a:focus-visible,input:focus-visible {
-  outline:2px solid var(--green);
-  outline-offset:3px;
+button:hover, .active {
+  border-color: var(--green);
+  color: var(--green);
 }
-main { max-width:1050px;margin:auto;padding:22px 16px; }
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 3px;
+}
+main {
+  max-width: 1050px;
+  margin: auto;
+  padding: 22px 16px;
+}
 .hero {
-  padding:32px 22px;
-  background:linear-gradient(135deg,#1d293b,#123c42);
-  border-radius:20px;
-  margin-bottom:28px;
+  padding: 32px 22px;
+  background: linear-gradient(135deg, #1d293b, #123c42);
+  border-radius: 20px;
+  margin-bottom: 28px;
 }
-h1 { font-size:clamp(30px,6vw,46px);margin:0 0 12px; }
-h2 { margin-top:28px; }
-p { line-height:1.6; }
-.green { color:var(--green); }
-.muted { color:var(--muted); }
-.search { width:100%;margin:18px 0; }
+h1 {
+  font-size: clamp(30px, 6vw, 46px);
+  margin: 0 0 12px;
+}
+h2 { margin-top: 28px; }
+p { line-height: 1.6; }
+.green { color: var(--green); }
+.muted { color: var(--muted); }
+.search { width: 100%; margin: 18px 0; }
 input {
-  width:100%;padding:14px;border-radius:10px;
-  border:1px solid #34455d;background:var(--card);color:white;
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #34455d;
+  background: var(--card);
+  color: white;
 }
-.categories { display:flex;gap:8px;flex-wrap:wrap;margin:16px 0; }
+.categories {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
 .products {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
 }
 .product {
-  background:var(--card);
-  border:1px solid #30415a;
-  border-radius:16px;
-  padding:18px;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
+  background: var(--card);
+  border: 1px solid #30415a;
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.product .emoji { font-size:42px; }
-.product h3,.product p { margin:0; }
-.product .favorite { margin-top:8px; }
+.product .emoji { font-size: 42px; }
+.product h3, .product p { margin: 0; }
+.product .favorite { margin-top: 8px; }
 .product-link {
-  display:block;
-  margin-top:auto;
-  text-align:center;
-  text-decoration:none;
-  background:var(--green);
-  color:#101827;
-  border:1px solid var(--green);
-  font-weight:bold;
-  padding:12px 14px;
-  border-radius:10px;
+  display: block;
+  margin-top: auto;
+  text-align: center;
+  text-decoration: none;
+  background: var(--green);
+  color: #101827;
+  border: 1px solid var(--green);
+  font-weight: bold;
+  padding: 12px 14px;
+  border-radius: 10px;
 }
-.product-link:hover { background:#8af4cd;color:#101827; }
+.product-link:hover {
+  background: #8af4cd;
+  color: #101827;
+}
 .primary {
-  background:var(--green);
-  color:#101827;
-  border-color:var(--green);
-  font-weight:bold;
+  background: var(--green);
+  color: #101827;
+  border-color: var(--green);
+  font-weight: bold;
 }
-.primary:hover { color:#101827; }
 .notice {
-  margin-top:25px;padding:16px;border:1px solid #34455d;
-  border-radius:12px;color:var(--muted);font-size:13px;
+  margin-top: 25px;
+  padding: 16px;
+  border: 1px solid #34455d;
+  border-radius: 12px;
+  color: var(--muted);
+  font-size: 13px;
 }
 footer {
-  text-align:center;padding:25px;color:var(--muted);
-  border-top:1px solid #29374c;margin-top:30px;
+  text-align: center;
+  padding: 25px;
+  color: var(--muted);
+  border-top: 1px solid #29374c;
+  margin-top: 30px;
 }
-[hidden] { display:none !important; }
+[hidden] { display: none !important; }
 </style>
 </head>
+
 <body>
+
 <header>
   <div class="logo">VATO</div>
   <nav aria-label="Hauptnavigation">
-    <button type="button" onclick="showMode('all')" id="allBtn" class="active">Startseite</button>
-    <button type="button" onclick="showMode('favorites')" id="favoritesBtn">♡ Favoriten</button>
+    <button type="button" onclick="showMode('all')"
+      id="allBtn" class="active">Startseite</button>
+    <button type="button" onclick="showMode('favorites')"
+      id="favoritesBtn">♡ Favoriten</button>
   </nav>
 </header>
 
 <main>
+
   <section class="hero">
     <p class="green">★ DEINE ANGEBOTSPLATTFORM</p>
     <h1>Willkommen bei <span class="green">VATO</span></h1>
-    <p>Entdecke interessante Produkte und Angebote.
+    <p>Entdecke Fitnessprodukte, Technik und interessante Angebote.
        Finde deine nächsten Favoriten.</p>
     <button type="button" class="primary"
       onclick="document.getElementById('angebote').scrollIntoView({behavior:'smooth'})">
@@ -136,166 +179,36 @@ footer {
 
   <h2 id="angebote">Angebote entdecken</h2>
   <p class="muted">Suche nach Produkten oder wähle eine Kategorie.</p>
-  <input class="search" id="search" placeholder="🔎 Angebote suchen..."
+
+  <input class="search" id="search"
+    placeholder="🔎 Angebote suchen..."
     oninput="render()" aria-label="Angebote suchen">
 
   <div class="categories" aria-label="Produktkategorien">
-    <button type="button" class="active" onclick="setCategory('Alle',this)">Alle</button>
-    <button type="button" onclick="setCategory('Technik',this)">📱 Technik</button>
-    <button type="button" onclick="setCategory('Fitness',this)">💪 Fitness</button>
-    <button type="button" onclick="setCategory('Lifestyle',this)">✨ Lifestyle</button>
-    <button type="button" onclick="setCategory('Reisen',this)">✈️ Reisen</button>
+    <button type="button" class="active"
+      onclick="setCategory('Alle',this)">Alle</button>
+    <button type="button"
+      onclick="setCategory('Technik',this)">📱 Technik</button>
+    <button type="button"
+      onclick="setCategory('Fitness',this)">💪 Fitness</button>
+    <button type="button"
+      onclick="setCategory('Lifestyle',this)">✨ Lifestyle</button>
+    <button type="button"
+      onclick="setCategory('Reisen',this)">✈️ Reisen</button>
   </div>
 
   <div class="products" id="products"></div>
-  <p id="empty" class="muted" hidden>Keine passenden Angebote gefunden.</p>
+  <p id="empty" class="muted" hidden>
+    Keine passenden Angebote gefunden.
+  </p>
 
   <section class="notice">
     <strong>Werbehinweis:</strong>
-    VATO kann Affiliate-Links enthalten. Wenn du über einen solchen Link einkaufst,
-    können wir unter bestimmten Voraussetzungen eine Provision erhalten.
+    VATO enthält Partnerlinks. Wenn du über einen solchen Link einkaufst,
+    kann unter bestimmten Voraussetzungen eine Provision anfallen.
     Für dich entstehen dadurch grundsätzlich keine zusätzlichen Kosten.
   </section>
 
   <section class="notice">
-    <strong>Wichtiger Hinweis:</strong>
-    Verwende nur Partnerlinks, die deinem eigenen Partnerkonto zugeordnet sind.
-    Vor dem kommerziellen Betrieb müssen ein Impressum und eine
-    Datenschutzerklärung ergänzt werden.
-  </section>
-</main>
-
-<footer>
-  <div class="logo">VATO</div>
-  <p>Deine Plattform für smarte Empfehlungen.</p>
-  <p>Impressum und Datenschutzerklärung vor dem kommerziellen Betrieb ergänzen.</p>
-</footer>
-
-<script>
-const products = [
-  {
-    id:1,
-    name:"Fitness-Zubehör",
-    category:"Fitness",
-    emoji:"🏋️",
-    description:"Trainingszubehör bei Amazon entdecken.",
-    link:"https://link.amazon/B02FNdCWe"
-  },
-  {
-    id:2,
-    name:"Sportschuhe",
-    category:"Fitness",
-    emoji:"👟",
-    description:"Sportschuhe bei Amazon entdecken.",
-    link:"https://link.amazon/B06bi44Xz"
-  },
-  {
-    id:3,
-    name:"Boxhandschuhe",
-    category:"Fitness",
-    emoji:"🥊",
-    description:"Boxhandschuhe bei Amazon entdecken.",
-    link:"https://link.amazon/B0dcdo7Tu"
-  },
-  {
-    id:7,
-    name:"Kurzhanteln",
-    category:"Fitness",
-    emoji:"🏋️",
-    description:"Kurzhanteln für dein Krafttraining bei Amazon entdecken.",
-    link:"https://link.amazon/B0gRUFY9N"
-  },
-  {
-    id:4,
-    name:"Kopfhörer",
-    category:"Technik",
-    emoji:"🎧",
-    description:"Technik-Angebote entdecken.",
-    link:""
-  },
-  {
-    id:5,
-    name:"Alltags-Accessoires",
-    category:"Lifestyle",
-    emoji:"⌚",
-    description:"Praktische Produkte für den Alltag entdecken.",
-    link:""
-  },
-  {
-    id:6,
-    name:"Reise-Zubehör",
-    category:"Reisen",
-    emoji:"🎒",
-    description:"Zubehör für deine nächste Reise entdecken.",
-    link:""
-  }
-];
-
-let category = "Alle";
-let mode = "all";
-let favorites = [];
-
-function setCategory(value, button) {
-  category = value;
-  document.querySelectorAll(".categories button")
-    .forEach(b => b.classList.remove("active"));
-  button.classList.add("active");
-  render();
-}
-
-function showMode(value) {
-  mode = value;
-  document.getElementById("allBtn").classList.toggle("active",value === "all");
-  document.getElementById("favoritesBtn").classList.toggle("active",value === "favorites");
-  render();
-  document.getElementById("angebote").scrollIntoView({behavior:"smooth"});
-}
-
-function toggleFavorite(id) {
-  favorites = favorites.includes(id)
-    ? favorites.filter(x => x !== id)
-    : [...favorites,id];
-  render();
-}
-
-function render() {
-  const term = document.getElementById("search").value.toLowerCase().trim();
-
-  const shown = products.filter(p =>
-    (category === "Alle" || p.category === category) &&
-    (mode !== "favorites" || favorites.includes(p.id)) &&
-    (p.name + " " + p.category + " " + p.description)
-      .toLowerCase().includes(term)
-  );
-
-  document.getElementById("products").innerHTML = shown.map(p => `
-    <article class="product">
-      <div class="emoji" aria-hidden="true">${p.emoji}</div>
-      <p class="green">${p.category}</p>
-      <h3>${p.name}</h3>
-      <p class="muted">${p.description}</p>
-      <button type="button" class="favorite" onclick="toggleFavorite(${p.id})">
-        ${favorites.includes(p.id) ? "♥ Gespeichert" : "♡ Merken"}
-      </button>
-      ${
-        p.link
-          ? `<a class="product-link" href="${p.link}" target="_blank"
-               rel="sponsored nofollow noopener"
-               aria-label="${p.name} bei Amazon ansehen">
-               Angebot ansehen →
-             </a>`
-          : `<button type="button" class="primary"
-               onclick="alert('Für dieses Produkt wird noch ein Partnerlink hinzugefügt.')">
-               Bald verfügbar
-             </button>`
-      }
-    </article>
-  `).join("");
-
-  document.getElementById("empty").hidden = shown.length !== 0;
-}
-
-render();
-</script>
-</body>
-</html>
+    <strong>Hinweis:</strong>
+    Vor dem kommerziellen
