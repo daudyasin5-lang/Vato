@@ -5,16 +5,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#101827">
-<meta name="description" content="VATO – Entdecke ausgewählte Fitnessprodukte, Technik, Lifestyle und Angebote.">
+<meta name="description" content="VATO – Fitness, Technik, Lifestyle und Angebote entdecken.">
 <title>VATO – Entdecke deine Favoriten</title>
-
 <style>
 :root {
   --bg:#0b1220;
   --surface:#111c2e;
   --card:#17253a;
   --green:#42edb0;
-  --green-dark:#153d38;
   --text:#f4f7fc;
   --muted:#aab9cf;
   --border:#2c3e56;
@@ -57,10 +55,11 @@ header {
   letter-spacing:2px;
   color:var(--green);
 }
-nav,.categories {
+nav,.categories,.legal-nav {
   display:flex;
   flex-wrap:wrap;
   gap:8px;
+  justify-content:center;
 }
 button {
   color:var(--text);
@@ -124,7 +123,7 @@ p { margin-top:0; }
   color:#071b17;
   border:1px solid var(--green);
 }
-.primary:hover { background:#8af5ce; }
+.primary:hover,.product-link:hover { background:#8af5ce; }
 .secondary {
   background:rgba(255,255,255,.04);
   color:var(--text);
@@ -179,10 +178,7 @@ input::placeholder { color:#91a2bb; }
   border-radius:var(--radius);
   transition:transform .2s,border-color .2s;
 }
-.product:hover {
-  transform:translateY(-3px);
-  border-color:#557269;
-}
+.product:hover { transform:translateY(-3px); border-color:#557269; }
 .product.vita {
   background:
     radial-gradient(ellipse at top right,rgba(66,237,176,.13),transparent 55%),
@@ -235,9 +231,8 @@ input::placeholder { color:#91a2bb; }
   color:#071b17;
   background:var(--green);
 }
-.product-link:hover { background:#8af5ce; }
 .favorite { width:100%; font-size:13px; }
-.notice {
+.notice,.legal {
   margin-top:22px;
   padding:17px;
   border:1px solid var(--border);
@@ -247,8 +242,10 @@ input::placeholder { color:#91a2bb; }
   font-size:13px;
   overflow-wrap:anywhere;
 }
-.notice strong { color:var(--text); }
-#copyStatus { margin:0; font-size:13px; }
+.notice strong,.legal strong { color:var(--text); }
+.legal h2 { color:var(--text); font-size:25px; }
+.legal h3 { color:var(--text); margin:22px 0 8px; font-size:17px; }
+.legal a { color:var(--green); }
 #empty {
   padding:28px 16px;
   text-align:center;
@@ -264,8 +261,9 @@ footer {
 }
 footer p { margin:5px 0; }
 footer .muted { font-size:13px; }
+.legal-nav { margin-top:15px; }
+.legal-nav a { font-size:13px; color:var(--muted); padding:5px 8px; }
 [hidden] { display:none !important; }
-
 @media (max-width:760px) {
   .products { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .highlights { grid-template-columns:1fr; }
@@ -283,20 +281,16 @@ footer .muted { font-size:13px; }
   .categories button { padding:9px 11px; font-size:13px; }
 }
 @media (prefers-reduced-motion:reduce) {
-  *,*::before,*::after {
-    scroll-behavior:auto !important;
-    transition:none !important;
-  }
+  *,*::before,*::after { scroll-behavior:auto !important; transition:none !important; }
 }
 </style>
 </head>
-
 <body>
 <header>
   <a href="#start" class="logo" aria-label="VATO Startseite">VATO</a>
   <nav aria-label="Hauptnavigation">
-    <button type="button" id="allBtn" class="active">Startseite</button>
-    <button type="button" id="favoritesBtn">♡ Favoriten</button>
+    <button type="button" id="allBtn" class="active" aria-pressed="true">Startseite</button>
+    <button type="button" id="favoritesBtn" aria-pressed="false">♡ Favoriten</button>
   </nav>
 </header>
 
@@ -304,10 +298,7 @@ footer .muted { font-size:13px; }
   <section class="hero">
     <p class="eyebrow">Deine Welt. Deine Auswahl.</p>
     <h1>Entdecke deine nächsten <span class="green">Favoriten.</span></h1>
-    <p class="hero-copy">
-      Willkommen bei VATO. Entdecke ausgewählte Angebote aus Fitness,
-      Technik, Lifestyle und mehr – einfach, übersichtlich und an einem Ort.
-    </p>
+    <p class="hero-copy">Willkommen bei VATO. Entdecke ausgewählte Angebote aus Fitness, Technik, Lifestyle und mehr – einfach, übersichtlich und an einem Ort.</p>
     <div class="actions">
       <a class="primary" href="#angebote">Angebote entdecken ↓</a>
       <a class="secondary" href="#vato-info">Mehr über VATO</a>
@@ -315,18 +306,9 @@ footer .muted { font-size:13px; }
   </section>
 
   <section class="highlights" aria-label="VATO Vorteile">
-    <div class="highlight">
-      <strong>💪 Fitness & Training</strong>
-      <span>Ideen für dein Workout</span>
-    </div>
-    <div class="highlight">
-      <strong>🎧 Technik & Alltag</strong>
-      <span>Praktische Produkte entdecken</span>
-    </div>
-    <div class="highlight">
-      <strong>✨ Einfach entdecken</strong>
-      <span>Suche, Kategorien und Favoriten</span>
-    </div>
+    <div class="highlight"><strong>💪 Fitness &amp; Training</strong><span>Ideen für dein Workout</span></div>
+    <div class="highlight"><strong>🎧 Technik &amp; Alltag</strong><span>Praktische Produkte entdecken</span></div>
+    <div class="highlight"><strong>✨ Einfach entdecken</strong><span>Suche, Kategorien und Favoriten</span></div>
   </section>
 
   <section id="angebote">
@@ -335,56 +317,69 @@ footer .muted { font-size:13px; }
       <h2 id="sectionTitle">Angebote entdecken</h2>
       <p class="muted">Suche nach Produkten oder wähle deine Kategorie.</p>
     </div>
-
     <div class="search-wrap">
       <span class="search-icon" aria-hidden="true">⌕</span>
-      <input id="search" type="search"
-        placeholder="Produkte, Fitness, Technik suchen …"
-        aria-label="Angebote suchen">
+      <input id="search" type="search" placeholder="Produkte, Fitness, Technik suchen …" aria-label="Angebote suchen">
     </div>
-
     <div class="categories" aria-label="Produktkategorien">
-      <button type="button" class="active" data-category="Alle">Alle</button>
-      <button type="button" data-category="Technik">📱 Technik</button>
-      <button type="button" data-category="Fitness">💪 Fitness</button>
-      <button type="button" data-category="Lifestyle">✨ Lifestyle</button>
-      <button type="button" data-category="Reisen">✈️ Reisen</button>
+      <button type="button" class="active" data-category="Alle" aria-pressed="true">Alle</button>
+      <button type="button" data-category="Technik" aria-pressed="false">📱 Technik</button>
+      <button type="button" data-category="Fitness" aria-pressed="false">💪 Fitness</button>
+      <button type="button" data-category="Lifestyle" aria-pressed="false">✨ Lifestyle</button>
+      <button type="button" data-category="Reisen" aria-pressed="false">✈️ Reisen</button>
     </div>
-
     <div class="products" id="products" aria-live="polite"></div>
-    <p id="empty" class="muted" hidden>
-      Keine passenden Angebote gefunden. Ändere deine Suche oder Kategorie.
-    </p>
+    <p id="empty" class="muted" hidden>Keine passenden Angebote gefunden. Ändere deine Suche oder Kategorie.</p>
   </section>
 
   <section class="notice" id="vato-info">
     <strong>Über VATO</strong>
-    <p>
-      VATO hilft dir dabei, interessante Produkte und Angebote aus
-      verschiedenen Bereichen zu entdecken. Die Auswahl wird nach und nach
-      erweitert.
-    </p>
+    <p>VATO hilft dir dabei, interessante Produkte und Angebote aus verschiedenen Bereichen zu entdecken. Die Auswahl wird nach und nach erweitert.</p>
   </section>
 
   <section class="notice">
     <strong>Werbe- und Affiliate-Hinweis</strong>
-    <p>
-      VATO enthält Affiliate-Links. Wenn du über bestimmte Links einkaufst,
-      können wir eine Provision erhalten. Für dich entstehen dadurch
-      grundsätzlich keine zusätzlichen Kosten.
-    </p>
-    <p>
-      Als Amazon-Partner verdiene ich an qualifizierten Verkäufen.
-      VitaStrong-Angebote können ebenfalls provisionsbasiert sein.
-    </p>
+    <p>VATO enthält Affiliate-Links. Wenn du über bestimmte Links einkaufst, können wir eine Provision erhalten. Für dich entstehen dadurch grundsätzlich keine zusätzlichen Kosten.</p>
+    <p>Als Amazon-Partner verdiene ich an qualifizierten Verkäufen. VitaStrong-Angebote können ebenfalls provisionsbasiert sein.</p>
   </section>
 
   <section class="notice">
     <strong>Produktinformationen</strong>
-    <p>
-      Preise, Verfügbarkeit und Angebotsbedingungen können sich ändern.
-      Maßgeblich sind die Angaben auf der jeweiligen Partnerseite.
-    </p>
+    <p>Preise, Verfügbarkeit und Angebotsbedingungen können sich ändern. Maßgeblich sind die Angaben auf der jeweiligen Partnerseite.</p>
+  </section>
+
+  <section class="legal" id="impressum">
+    <h2>Impressum</h2>
+    <p><strong>Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG)</strong></p>
+    <p>Khawaja Daud Yasin<br>Walkmühlstraße 24<br>65232 Taunusstein-Wehen<br>Deutschland</p>
+    <p><strong>Kontakt</strong><br>E-Mail: <a href="mailto:daudyasin5@gmail.com">daudyasin5@gmail.com</a></p>
+    <p><strong>Verantwortlich für den Inhalt</strong><br>Khawaja Daud Yasin, Anschrift wie oben.</p>
+    <p>Bitte prüfe vor Veröffentlichung, ob die Angaben für deine konkrete Tätigkeit vollständig sind und ob weitere Pflichtangaben erforderlich sind.</p>
+  </section>
+
+  <section class="legal" id="datenschutz">
+    <h2>Datenschutzerklärung</h2>
+    <h3>1. Verantwortlicher</h3>
+    <p>Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website ist Khawaja Daud Yasin, Walkmühlstraße 24, 65232 Taunusstein-Wehen, Deutschland. E-Mail: <a href="mailto:daudyasin5@gmail.com">daudyasin5@gmail.com</a>.</p>
+
+    <h3>2. Hosting über GitHub Pages</h3>
+    <p>Diese Website wird über GitHub Pages bereitgestellt. Beim Aufruf der Website können technisch erforderliche Verbindungsdaten wie IP-Adresse, Zeitpunkt des Zugriffs und Browserinformationen verarbeitet und in Serverprotokollen gespeichert werden. Weitere Informationen findest du in der <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub-Datenschutzerklärung</a>.</p>
+
+    <h3>3. Affiliate-Links und externe Anbieter</h3>
+    <p>Diese Website enthält Partnerlinks zu Amazon und VitaStrong. Wenn du einen Partnerlink anklickst, verlässt du VATO und wechselst zur Website des jeweiligen Anbieters. Dort können eigene Datenverarbeitungen, Cookies und Zuordnungen zu Partnerprogrammen stattfinden. Dafür gelten die Datenschutzinformationen des jeweiligen Anbieters. Die Anbieter können erfassen, dass du über einen Partnerlink gekommen bist.</p>
+    <p>Informationen zu Amazon findest du in den <a href="https://www.amazon.de/gp/help/customer/display.html?nodeId=201909010" target="_blank" rel="noopener noreferrer">Datenschutzhinweisen von Amazon</a>. Für VitaStrong beachte bitte die Datenschutzinformationen auf der VitaStrong-Website.</p>
+
+    <h3>4. Favoritenfunktion (localStorage)</h3>
+    <p>Die Favoritenfunktion speichert ausgewählte Produktkennungen lokal im Browser deines Geräts (localStorage), damit deine Favoriten bei einem späteren Besuch wieder angezeigt werden können. Diese Favoriten werden durch diese Funktion nicht an einen VATO-Server übertragen. Du kannst die lokalen Daten in den Einstellungen deines Browsers löschen.</p>
+
+    <h3>5. Suche und Kategorien</h3>
+    <p>Die Suche und die Kategorienfilter werden im Browser ausgeführt. Die eingegebenen Suchbegriffe werden durch den Website-Code nicht an VATO übermittelt.</p>
+
+    <h3>6. Deine Rechte</h3>
+    <p>Nach Maßgabe der geltenden Datenschutzgesetze hast du gegebenenfalls Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung und Widerspruch sowie das Recht, dich bei einer Datenschutzaufsichtsbehörde zu beschweren.</p>
+
+    <h3>7. Aktualität</h3>
+    <p>Diese Erklärung beschreibt die vorgesehenen Funktionen dieser Website. Bitte prüfe sie vor Veröffentlichung und aktualisiere sie, wenn du zusätzliche Dienste, Analysewerkzeuge, Tracking, eingebettete Inhalte oder Formulare einbindest. Dieser Text ist eine Vorlage und keine Garantie für vollständige rechtliche Konformität.</p>
   </section>
 </main>
 
@@ -392,89 +387,28 @@ footer .muted { font-size:13px; }
   <p><strong class="green">VATO</strong> – Entdecke deine Favoriten.</p>
   <p class="muted">Fitness · Technik · Lifestyle · Angebote</p>
   <p class="muted">Unabhängige Produktauswahl mit Partnerlinks.</p>
+  <nav class="legal-nav" aria-label="Rechtliche Informationen">
+    <a href="#impressum">Impressum</a>
+    <a href="#datenschutz">Datenschutzerklärung</a>
+    <a href="#angebote">Zur Produktauswahl</a>
+  </nav>
 </footer>
 
 <script>
 "use strict";
-
 const AMAZON_TAG = "vatoempfehlun-21";
 const VITA_LINK = "https://vitastrong.de/?coupon=Yasin786";
 const VITA_CODE = "Yasin786";
 
 const products = [
-  {
-    id:"fitness",
-    name:"Fitness-Zubehör",
-    category:"Fitness",
-    emoji:"💪",
-    description:"Entdecke Trainingszubehör für dein Workout.",
-    link:"https://www.amazon.de/s?k=Fitness+Zubehoer&tag="+AMAZON_TAG,
-    button:"Fitnessprodukte entdecken"
-  },
-  {
-    id:"schuhe",
-    name:"Sportschuhe",
-    category:"Fitness",
-    emoji:"👟",
-    description:"Sportschuhe für Training und Alltag entdecken.",
-    link:"https://www.amazon.de/s?k=Sportschuhe&tag="+AMAZON_TAG,
-    button:"Sportschuhe entdecken"
-  },
-  {
-    id:"boxen",
-    name:"Boxhandschuhe",
-    category:"Fitness",
-    emoji:"🥊",
-    description:"Entdecke Boxhandschuhe und Boxausrüstung.",
-    link:"https://www.amazon.de/s?k=Boxhandschuhe&tag="+AMAZON_TAG,
-    button:"Boxausrüstung entdecken"
-  },
-  {
-    id:"hanteln",
-    name:"Kurzhanteln",
-    category:"Fitness",
-    emoji:"🏋️",
-    description:"Trainingsgewichte für dein Workout zu Hause.",
-    link:"https://www.amazon.de/s?k=Kurzhanteln&tag="+AMAZON_TAG,
-    button:"Hanteln entdecken"
-  },
-  {
-    id:"vita",
-    name:"VitaStrong",
-    category:"Fitness",
-    emoji:"🟢",
-    description:"Entdecke VitaStrong und deinen persönlichen Rabattcode.",
-    link:VITA_LINK,
-    button:"Jetzt VitaStrong entdecken",
-    vita:true
-  },
-  {
-    id:"technik",
-    name:"Kopfhörer & Technik",
-    category:"Technik",
-    emoji:"🎧",
-    description:"Entdecke Kopfhörer und Technikzubehör.",
-    link:"https://www.amazon.de/s?k=Kopfhoerer&tag="+AMAZON_TAG,
-    button:"Technik entdecken"
-  },
-  {
-    id:"lifestyle",
-    name:"Alltags-Accessoires",
-    category:"Lifestyle",
-    emoji:"✨",
-    description:"Praktische Accessoires und Ideen für jeden Tag.",
-    link:"https://www.amazon.de/s?k=Alltags+Accessoires&tag="+AMAZON_TAG,
-    button:"Accessoires entdecken"
-  },
-  {
-    id:"reisen",
-    name:"Reise-Zubehör",
-    category:"Reisen",
-    emoji:"✈️",
-    description:"Nützliches Zubehör für deine nächste Reise.",
-    link:"https://www.amazon.de/s?k=Reisezubehoer&tag="+AMAZON_TAG,
-    button:"Reisezubehör entdecken"
-  }
+  {id:"fitness",name:"Fitness-Zubehör",category:"Fitness",emoji:"💪",description:"Entdecke Trainingszubehör für dein Workout.",link:"https://www.amazon.de/s?k=Fitness+Zubehoer&tag="+AMAZON_TAG,button:"Fitnessprodukte entdecken"},
+  {id:"schuhe",name:"Sportschuhe",category:"Fitness",emoji:"👟",description:"Sportschuhe für Training und Alltag entdecken.",link:"https://www.amazon.de/s?k=Sportschuhe&tag="+AMAZON_TAG,button:"Sportschuhe entdecken"},
+  {id:"boxen",name:"Boxhandschuhe",category:"Fitness",emoji:"🥊",description:"Entdecke Boxhandschuhe und Boxausrüstung.",link:"https://www.amazon.de/s?k=Boxhandschuhe&tag="+AMAZON_TAG,button:"Boxausrüstung entdecken"},
+  {id:"hanteln",name:"Kurzhanteln",category:"Fitness",emoji:"🏋️",description:"Trainingsgewichte für dein Workout zu Hause.",link:"https://www.amazon.de/s?k=Kurzhanteln&tag="+AMAZON_TAG,button:"Hanteln entdecken"},
+  {id:"vita",name:"VitaStrong",category:"Fitness",emoji:"🟢",description:"Entdecke VitaStrong und deinen persönlichen Rabattcode.",link:VITA_LINK,button:"Jetzt VitaStrong entdecken",vita:true},
+  {id:"technik",name:"Kopfhörer & Technik",category:"Technik",emoji:"🎧",description:"Entdecke Kopfhörer und Technikzubehör.",link:"https://www.amazon.de/s?k=Kopfhoerer&tag="+AMAZON_TAG,button:"Technik entdecken"},
+  {id:"lifestyle",name:"Alltags-Accessoires",category:"Lifestyle",emoji:"✨",description:"Praktische Accessoires und Ideen für jeden Tag.",link:"https://www.amazon.de/s?k=Alltags+Accessoires&tag="+AMAZON_TAG,button:"Accessoires entdecken"},
+  {id:"reisen",name:"Reise-Zubehör",category:"Reisen",emoji:"✈️",description:"Nützliches Zubehör für deine nächste Reise.",link:"https://www.amazon.de/s?k=Reisezubehoer&tag="+AMAZON_TAG,button:"Reisezubehör entdecken"}
 ];
 
 const FAVORITES_KEY = "vato-favorites-v2";
@@ -485,12 +419,9 @@ const favorites = new Set();
 try {
   const saved = JSON.parse(localStorage.getItem(FAVORITES_KEY) || "[]");
   if (Array.isArray(saved)) {
-    saved.filter(id => products.some(p => p.id === id))
-      .forEach(id => favorites.add(id));
+    saved.filter(id => products.some(p => p.id === id)).forEach(id => favorites.add(id));
   }
-} catch (error) {
-  // Die Seite funktioniert auch, wenn lokaler Speicher nicht verfügbar ist.
-}
+} catch (error) {}
 
 const productsBox = document.getElementById("products");
 const empty = document.getElementById("empty");
@@ -498,11 +429,8 @@ const search = document.getElementById("search");
 const sectionTitle = document.getElementById("sectionTitle");
 
 function saveFavorites() {
-  try {
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites]));
-  } catch (error) {
-    // Favoriten bleiben bis zum Neuladen der Seite im Arbeitsspeicher.
-  }
+  try { localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites])); }
+  catch (error) {}
 }
 
 function showMode(nextMode) {
@@ -526,11 +454,8 @@ function setCategory(nextCategory) {
 }
 
 function toggleFavorite(id) {
-  if (favorites.has(id)) {
-    favorites.delete(id);
-  } else {
-    favorites.add(id);
-  }
+  if (favorites.has(id)) favorites.delete(id);
+  else favorites.add(id);
   saveFavorites();
   render();
 }
@@ -553,12 +478,9 @@ function makeElement(tag, className, text) {
 
 function render() {
   const query = search.value.trim().toLowerCase();
-
   const filtered = products.filter(product => {
     const matchesCategory = category === "Alle" || product.category === category;
-    const matchesSearch = (
-      product.name + " " + product.description + " " + product.category
-    ).toLowerCase().includes(query);
+    const matchesSearch = (product.name + " " + product.description + " " + product.category).toLowerCase().includes(query);
     const matchesMode = mode === "all" || favorites.has(product.id);
     return matchesCategory && matchesSearch && matchesMode;
   });
@@ -568,10 +490,7 @@ function render() {
   filtered.forEach(product => {
     const card = makeElement("article", "product" + (product.vita ? " vita" : ""));
 
-    if (product.vita) {
-      card.appendChild(makeElement("span", "product-tag", "DEIN PARTNERANGEBOT"));
-    }
-
+    if (product.vita) card.appendChild(makeElement("span", "product-tag", "DEIN PARTNERANGEBOT"));
     card.appendChild(makeElement("div", "emoji", product.emoji));
     card.appendChild(makeElement("h3", "", product.name));
     card.appendChild(makeElement("p", "description", product.description));
@@ -579,7 +498,6 @@ function render() {
     if (product.vita) {
       card.appendChild(makeElement("p", "muted", "Dein persönlicher Rabattcode:"));
       card.appendChild(makeElement("div", "coupon", VITA_CODE));
-
       const copyButton = makeElement("button", "copy-button", "📋 Rabattcode kopieren");
       copyButton.type = "button";
       const status = makeElement("p", "muted", "");
@@ -595,13 +513,7 @@ function render() {
     link.rel = "noopener noreferrer sponsored";
     card.appendChild(link);
 
-    const favoriteButton = makeElement(
-      "button",
-      "favorite",
-      favorites.has(product.id)
-        ? "♥ Aus Favoriten entfernen"
-        : "♡ Zu Favoriten hinzufügen"
-    );
+    const favoriteButton = makeElement("button", "favorite", favorites.has(product.id) ? "♥ Aus Favoriten entfernen" : "♡ Zu Favoriten hinzufügen");
     favoriteButton.type = "button";
     favoriteButton.setAttribute("aria-pressed", String(favorites.has(product.id)));
     favoriteButton.addEventListener("click", () => toggleFavorite(product.id));
@@ -616,11 +528,9 @@ function render() {
 document.getElementById("allBtn").addEventListener("click", () => showMode("all"));
 document.getElementById("favoritesBtn").addEventListener("click", () => showMode("favorites"));
 search.addEventListener("input", render);
-
 document.querySelectorAll("[data-category]").forEach(button => {
   button.addEventListener("click", () => setCategory(button.dataset.category));
 });
-
 showMode("all");
 </script>
 </body>
